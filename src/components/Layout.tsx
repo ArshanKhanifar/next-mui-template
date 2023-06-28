@@ -1,11 +1,15 @@
 import React from "react";
-import AppBar from "./AppBar";
+import { TopBar } from "./TopBar";
+import Container from "@mui/material/Container";
+import styles from "./Layout.module.css";
 
 export default function Layout({ children }) {
   return (
     <div>
-      <AppBar />
-      <main>{children}</main>
+      <TopBar />
+      <main className={styles.main}>
+        <Container maxWidth="xl">{children}</Container>
+      </main>
     </div>
   );
 }
