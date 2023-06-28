@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardHeader, Stack } from "@mui/material";
 import { Grid } from "@mui/joy";
+import CreateBlogPost from "@/components/CreateBlogPost";
 const blogPosts = [
   {
     title: "The Future of Artificial Intelligence",
@@ -52,9 +53,10 @@ export default function HomePage() {
     <Stack spacing={2}>
       <Typography variant={"h2"}>Blog Posts</Typography>
       <Typography variant={"body1"}>
-        Fuck it, let's make this a blog!
+        {"Fuck it, let's make this a blog!"}
       </Typography>
       <BlogPostList />
+      <CreateBlogPost/>
     </Stack>
   );
 }

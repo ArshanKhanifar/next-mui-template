@@ -17,7 +17,18 @@ SA_DESCRIPTION:= "MUI NextJS template project"
 create-service-account:
 	gcloud iam service-accounts create $(SA_NAME) --display-name $(SA_DESCRIPTION)
 
+
+SA_FULL := $(SA_NAME)@$(GCLOUD_PROJECT).iam.gserviceaccount.com
+
+delete-service-account:
+	gcloud iam service-accounts delete $(SA_FULL)
+
+
 give-permissions:
 	gcloud projects add-iam-policy-binding $(GCLOUD_PROJECT) \
-		--member=serviceAccount:$(SA_NAME)@$(GCLOUD_PROJECT).iam.gserviceaccount.com \
-		--role=roles/bigquery.dataEditor
+		--member=serviceAccount:$(SA_FULL) \
+	 	--role=roles/bigquery.admin
+
+KEYFILE := bigquery-key.json
+create-keyfile:
+	gcloud iam service-accounts keys create $(KEYFILE) --iam-account=$(SA_FULL)
